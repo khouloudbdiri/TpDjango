@@ -1,0 +1,37 @@
+{% extends 'magasin/base.html' %}
+{% load static %}
+{% block content %}
+<form method='POST' class="post-form">
+{% csrf_token %}
+<div class="container">
+<div style="overflow:scroll; border:#000000 1px solid;">
+<table>
+ <tr>
+{% for article in list %}
+<td>
+ <img src='/media/{{ article.Img }}'
+ class="rounded float-start"
+height="200px"
+width="200px"
+ alt="">
+ <figcaption class="figure-caption">
+{{article.libelle}}
+ </figcaption>
+
+ <p> {{article.prix}} DT. </p>
+</td>
+{% endfor %}
+ </tr>
+ </table>
+</div>
+</form>
+</div>
+<br>
+<br><h4 class="p-3 mb-2 bg-danger text-white">Ajouter Produit</h4> <br>
+<form method='POST' enctype='multipart/form-data' class="post-form ms-5 me-5 mt-3 mb-3 p-4 rounded"
+    style="border:#afa6a6 2px solid; ">
+    {% csrf_token %}
+    {{ form}}
+    <button type="sumit" class="btn btn-danger mb-3 ">Enregistrer</button>
+</form>
+{% endblock %}
